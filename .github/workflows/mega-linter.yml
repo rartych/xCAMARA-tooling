@@ -9,6 +9,10 @@ name: MegaLinter
 on: # yamllint disable-line rule:truthy - false positive
   # For a workflow to be reusable, the values for on must include workflow_call
   workflow_call:
+    inputs:
+      branch:
+        required: true
+        type: string
 
 # Comment env block if you do not want to apply fixes
 env:
@@ -94,7 +98,7 @@ jobs:
           # ADD YOUR CUSTOM ENV VARIABLES HERE OR DEFINE THEM IN A FILE
           # .mega-linter.yml AT THE ROOT OF YOUR REPOSITORY
           PRINT_ALPACA: false
-          LINTER_RULES_PATH: "https://raw.githubusercontent.com/rartych/xCAMARA/main"
+          LINTER_RULES_PATH: "https://raw.githubusercontent.com/rartych/xCAMARA/${{ inputs.config-path }}"
           # Uncomment to disable copy-paste and spell checks
           DISABLE: COPYPASTE,SPELL,JAVASCRIPT,MARKDOWN
           DISABLE_LINTERS: YAML_PRETTIER,REPOSITORY_GRYPE,REPOSITORY_SEMGREP,REPOSITORY_DEVSKIM,REPOSITORY_KICS,REPOSITORY_TRIVY,REPOSITORY_TRIVY_SBOM,REPOSITORY_TRUFFLEHOG,REPOSITORY_CHECKOV,REPOSITORY_GITLEAKS,YAML_V8R,JAVA_PMD
