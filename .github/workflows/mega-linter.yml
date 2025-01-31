@@ -58,9 +58,9 @@ jobs:
       - name: Download functions
         run: |
           mkdir lint_function
-          curl https://raw.githubusercontent.com/rartych/xCAMARA/main/lint_function/camara-language-avoid-telco.js --output ./lint_function/camara-language-avoid-telco.js
-          curl https://raw.githubusercontent.com/rartych/xCAMARA/main/lint_function/camara-reserved-words.js --output ./lint_function/camara-reserved-words.js
-          curl https://raw.githubusercontent.com/rartych/xCAMARA/main/lint_function/camara-security-no-secrets-in-path-or-query-parameters.js --output ./lint_function/camara-security-no-secrets-in-path-or-query-parameters.js
+          curl https://raw.githubusercontent.com/rartych/xCAMARA/${{ inputs.branch }}/lint_function/camara-language-avoid-telco.js --output ./lint_function/camara-language-avoid-telco.js
+          curl https://raw.githubusercontent.com/rartych/xCAMARA/${{ inputs.branch }}/lint_function/camara-reserved-words.js --output ./lint_function/camara-reserved-words.js
+          curl https://raw.githubusercontent.com/rartych/xCAMARA/${{ inputs.branch }}/lint_function/camara-security-no-secrets-in-path-or-query-parameters.js --output ./lint_function/camara-security-no-secrets-in-path-or-query-parameters.js
         working-directory: ${{ github.workspace }}
 
       # MegaLinter
@@ -98,7 +98,7 @@ jobs:
           # ADD YOUR CUSTOM ENV VARIABLES HERE OR DEFINE THEM IN A FILE
           # .mega-linter.yml AT THE ROOT OF YOUR REPOSITORY
           PRINT_ALPACA: false
-          LINTER_RULES_PATH: "https://raw.githubusercontent.com/rartych/xCAMARA/${{ inputs.config-path }}"
+          LINTER_RULES_PATH: "https://raw.githubusercontent.com/rartych/xCAMARA/${{ inputs.branch }}"
           # Uncomment to disable copy-paste and spell checks
           DISABLE: COPYPASTE,SPELL,JAVASCRIPT,MARKDOWN
           DISABLE_LINTERS: YAML_PRETTIER,REPOSITORY_GRYPE,REPOSITORY_SEMGREP,REPOSITORY_DEVSKIM,REPOSITORY_KICS,REPOSITORY_TRIVY,REPOSITORY_TRIVY_SBOM,REPOSITORY_TRUFFLEHOG,REPOSITORY_CHECKOV,REPOSITORY_GITLEAKS,YAML_V8R,JAVA_PMD
