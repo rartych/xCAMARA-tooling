@@ -22,7 +22,7 @@ jobs:
 
     - name: Copy specified folder to workspace root
       run: |
-        cp -R ${{ github.workspace }}/config/linting/* ${{ github.workspace }}/
+        cp -R ${{ github.workspace }}/config/linting ${{ github.workspace }}
 
     - name: Display directory contents
       run: ls -la
