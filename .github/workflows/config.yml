@@ -1,4 +1,4 @@
-name: Execute MegaLinter linting using configuration from branch indicated by input 
+name: Execute MegaLinter
 description: 'A reusable action for linting using configuration from branch indicated by input `ref` variable '
 
 on:
