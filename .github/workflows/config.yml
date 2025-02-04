@@ -24,3 +24,6 @@ jobs:
 
     - name: Display directory contents
       run: ls -la
+    - name: Display lint_function
+      run: ls ${{ github.workspace }}/lint_function  -la
+      
