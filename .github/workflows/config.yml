@@ -14,9 +14,10 @@ jobs:
       with:
         repository: rartych/xCAMARA
         ref: main
-        sparse-checkout:
+        sparse-checkout: |
           config/linting/lint_function
           config/linting/.spectral.yml
+        sparse-checkout-cone-mode: false  
 
     - name: Copy specified folder to workspace root
       run: |
