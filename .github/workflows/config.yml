@@ -12,6 +12,8 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
+        repository: rartych/xCAMARA
+        ref: main
         sparse-checkout: |
           config/linting/lint_function
           config/linting/.spectral.yml
