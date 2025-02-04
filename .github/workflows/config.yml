@@ -1,13 +1,14 @@
 name: Sparse Checkout Example
 description: 'A reusable action to check out a repository, focus on a folder, and list its files'
-inputs:
-  ref:
-    description: 'The branch, tag, or commit to check out'
-    required: false
-    default: 'main'
+
 on:
   # For a workflow to be reusable, the values for on must include workflow_call
   workflow_call:
+    inputs:
+      ref:
+        description: 'The branch, tag, or commit to check out'
+        required: false
+        default: 'main'
 
 jobs:
   build:
