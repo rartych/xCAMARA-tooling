@@ -1,12 +1,13 @@
 ---
 name: Execute MegaLinter
-description: "A reusable action for linting using configuration from branch
-  indicated by input `ref` variable "
+description: "A reusable action for linting using configuration from branch indicated by input `ref` variable "
+
 on:
   workflow_call:
+    # For a workflow to be reusable, the values for on must include workflow_call
     inputs:
       ref:
-        description: The branch, tag, or commit to check out
+        description: The branch, tag, or commit to check out - conaining linting config to be used
         type: string
         required: false
         default: main
@@ -26,16 +27,16 @@ jobs:
           path: lint-config
           ref: ${{ inputs.ref }}
           sparse-checkout: |
-            # config/linting/lint_function
-            # config/linting/.spectral.yml
             config/linting/
           sparse-checkout-cone-mode: false
       - name: Copy specified folder to workspace root
-        run: cp -RTv ${{ github.workspace }}/lint-config/config/linting ${{ github.workspace }}
+        run: cp -RT ${{ github.workspace }}/lint-config/config/linting ${{ github.workspace }}
       - name: Display directory contents
         run: tree -a   
       - name: MegaLinter
         id: ml
+        # You can override MegaLinter flavor used to have faster performances
+        # More info at https://megalinter.io/latest/flavors/
         uses: oxsecurity/megalinter/flavors/c_cpp@v8
         env:
           VALIDATE_ALL_CODEBASE: true
@@ -46,7 +47,7 @@ jobs:
           DISABLE: COPYPASTE,SPELL,JAVASCRIPT,MARKDOWN
           DISABLE_LINTERS: YAML_PRETTIER,REPOSITORY_GRYPE,REPOSITORY_SEMGREP,REPOSITORY_DEVSKIM,REPOSITORY_KICS,REPOSITORY_TRIVY,REPOSITORY_TRIVY_SBOM,REPOSITORY_TRUFFLEHOG,REPOSITORY_CHECKOV,REPOSITORY_GITLEAKS,YAML_V8R,JAVA_PMD
           API_SPECTRAL_CONFIG_FILE: .spectral.yaml
-          YAML_YAMLLINT_CONFIG_FILE: .yamllint.yaml
+          YAML_YAMLLINT_CONFIG_FILE: .yamllint.yml
           GHERKIN_GHERKIN_LINT_CONFIG_FILE: .gherkin-lintrc
           YAML_YAMLLINT_FILTER_REGEX_INCLUDE: (code/)
           API_SPECTRAL_FILTER_REGEX_INCLUDE: (code/)
