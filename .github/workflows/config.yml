@@ -1,5 +1,5 @@
-name: Sparse Checkout Example
-description: 'A reusable action to check out a repository, focus on a folder, and list its files'
+name: Execute MegaLinter linting using configuration from branch indicated by input 
+description: 'A reusable action for linting using configuration from branch indicated by input `ref` variable '
 
 on:
   # For a workflow to be reusable, the values for on must include workflow_call
@@ -12,7 +12,7 @@ on:
         default: 'main'
 
 jobs:
-  build:
+  execute:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Code
