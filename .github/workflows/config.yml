@@ -31,7 +31,7 @@ jobs:
             config/linting/
           sparse-checkout-cone-mode: false
       - name: Copy specified folder to workspace root
-        run: cp -RT ${{ github.workspace }}/lint-config/config/linting/* ${{ github.workspace }}
+        run: cp -RTv ${{ github.workspace }}/lint-config/config/linting ${{ github.workspace }}
       - name: Display directory contents
         run: tree -a   
       - name: MegaLinter
