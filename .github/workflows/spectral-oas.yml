@@ -12,21 +12,6 @@ on:
         required: false
         default: main
 jobs:
-  build:
-    name: Run Spectral
-    runs-on: ubuntu-latest
-    steps:
-      # Check out the repository
-      - uses: actions/checkout@v4
-
-      # Run Spectral
-      - uses: stoplightio/spectral-action@latest
-        with:
-          file_glob: 'doc/api/*.yaml'
-
-
-
-jobs:
   execute:
     name: Spectral
     runs-on: ubuntu-latest
