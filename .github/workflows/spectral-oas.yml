@@ -1,0 +1,55 @@
+---
+name: Execute Spectral
+description: "A reusable action for linting using configuration from branch indicated by input `ref` variable "
+
+on:
+  workflow_call:
+    # For a workflow to be reusable, the values for on must include workflow_call
+    inputs:
+      ref:
+        description: The branch, tag, or commit to check out - containing linting config to be used
+        type: string
+        required: false
+        default: main
+jobs:
+  build:
+    name: Run Spectral
+    runs-on: ubuntu-latest
+    steps:
+      # Check out the repository
+      - uses: actions/checkout@v4
+
+      # Run Spectral
+      - uses: stoplightio/spectral-action@latest
+        with:
+          file_glob: 'doc/api/*.yaml'
+
+
+
+jobs:
+  execute:
+    name: Spectral
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT || secrets.GITHUB_TOKEN }}
+      - name: Checkout linting config
+        uses: actions/checkout@v4
+        with:
+          repository: rartych/xCAMARA-tooling
+          path: lint-config
+          ref: ${{ inputs.ref }}
+          sparse-checkout: |
+            linting/config/
+          sparse-checkout-cone-mode: false
+      # - name: Copy specified folder to workspace root
+      #  run: cp -RT ${{ github.workspace }}/lint-config/linting/config ${{ github.workspace }}
+      # - name: Display directory contents
+      #   run: tree -a   
+      - name: Run Spectral
+        uses: stoplightio/spectral-action@latest
+        with:
+          file_glob: 'code/API_definitions/*.yaml'
+          spectral_ruleset: ${{ github.workspace }}/lint-config/linting/config/.spectral.yaml
