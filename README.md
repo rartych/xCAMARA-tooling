@@ -5,4 +5,4 @@ This repository serves reusable workflows for CAMARA repositories.
 
 ### Linting configuration
 
-Configuration files for linting are located in config/linting directory
+Configuration files for linting are located in [linting/config](linting/config) folder 
