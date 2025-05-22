@@ -29,12 +29,12 @@ jobs:
           sparse-checkout: |
             linting/config/
           sparse-checkout-cone-mode: false
-      # - name: Copy specified folder to workspace root
-      #  run: cp -RT ${{ github.workspace }}/lint-config/linting/config ${{ github.workspace }}
-      # - name: Display directory contents
-      #   run: tree -a   
+      - name: Copy specified folder to workspace root
+        run: cp -RT ${{ github.workspace }}/lint-config/linting/config ${{ github.workspace }}
+      - name: Display directory contents
+        run: tree -a   
       - name: Run Spectral
         uses: stoplightio/spectral-action@latest
         with:
           file_glob: 'code/API_definitions/*.yaml'
-          spectral_ruleset: ${{ github.workspace }}/lint-config/linting/config/.spectral.yaml
+          spectral_ruleset: ${{ github.workspace }}/.spectral.yaml
