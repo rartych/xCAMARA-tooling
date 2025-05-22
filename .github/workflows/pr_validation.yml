@@ -34,7 +34,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.PAT || secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Checkout linting config
         uses: actions/checkout@v4
         with:
@@ -54,7 +54,6 @@ jobs:
         # configuration of Megalinter
         env:
           VALIDATE_ALL_CODEBASE: true
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PRINT_ALPACA: false
           # LINTER_RULES_PATH: ${{ github.workspace }}/lint-config/linting/config
           DISABLE: COPYPASTE,SPELL,JAVASCRIPT,MARKDOWN
