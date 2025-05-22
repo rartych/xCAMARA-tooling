@@ -31,10 +31,10 @@ jobs:
           sparse-checkout-cone-mode: false
       - name: Copy specified folder to workspace root
         run: cp -RT ${{ github.workspace }}/lint-config/linting/config ${{ github.workspace }}
-      - name: Display directory contents
-        run: tree -a   
-      - name: Run Spectral
-        uses: stoplightio/spectral-action@latest
-        with:
-          file_glob: 'code/API_definitions/*.yaml'
-          spectral_ruleset: ${{ github.workspace }}/.spectral.yaml
+      - name: Install Spectral
+        run: npm install -g @stoplight/spectral
+      - name: Install Spectral functions
+        run: npm install -g @stoplight/spectral-functions
+      - name: Run Spectral linting
+        run: spectral lint code/API_definitions/*.yaml --verbose --ruleset ${{ github.workspace }}/.spectral.yaml
+        
