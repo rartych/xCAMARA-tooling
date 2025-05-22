@@ -1,5 +1,5 @@
 name: PR validation for CAMARA Project
-description: "A reusable action for validating PRs using tools configuration from branch indicated by input `configurations` variable "
+# A reusable action for validating PRs using tools configuration from branch indicated by input `configurations` variable
 
 on:
   workflow_call:
@@ -40,7 +40,7 @@ jobs:
           VALIDATE_ALL_CODEBASE: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PRINT_ALPACA: false
-          LINTER_RULES_PATH: ${{ github.workspace }}/lint-config/linting/config
+          # LINTER_RULES_PATH: ${{ github.workspace }}/lint-config/linting/config
           DISABLE: COPYPASTE,SPELL,JAVASCRIPT,MARKDOWN
           DISABLE_LINTERS: YAML_PRETTIER,REPOSITORY_GRYPE,REPOSITORY_SEMGREP,REPOSITORY_DEVSKIM,REPOSITORY_KICS,REPOSITORY_TRIVY,REPOSITORY_TRIVY_SBOM,REPOSITORY_TRUFFLEHOG,REPOSITORY_CHECKOV,REPOSITORY_GITLEAKS,YAML_V8R,JAVA_PMD
           API_SPECTRAL_CONFIG_FILE: .spectral.yaml
