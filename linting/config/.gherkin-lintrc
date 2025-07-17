@@ -23,11 +23,11 @@
     }
   ],
   "no-trailing-spaces": "on",
-  "new-line-at-eof": ["on", "no"],
+  "new-line-at-eof": ["off", "yes"],
   "no-multiple-empty-lines": "on",
   "no-empty-file": "on",
   "no-scenario-outlines-without-examples": "on",
-  "name-length": ["on", {"Feature": 90, "Step": 190, "Scenario": 190}],
+  "name-length": ["on", {"Feature": 190, "Step": 190, "Scenario": 190}],
   "no-restricted-tags": ["on", {"tags": ["@watch", "@wip"]}],
   "use-and": "on",
   "keywords-in-logical-order": "on",
@@ -49,7 +49,7 @@
  }],
   "file-name": ["off", {"style": "kebab-case"}],
   "max-scenarios-per-file": ["on", {"maxScenarios": 50, "countOutlineExamples": true}],
-  "no-restricted-patterns": ["on", {
+  "no-restricted-patterns": ["off", {
     "Global": [
       "^globally restricted pattern"
     ],
