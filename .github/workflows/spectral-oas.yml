@@ -40,5 +40,8 @@ jobs:
       - name: Display output
         run: cat output.txt    
       - name: Log output  
-        run: cat output.txt >> $GITHUB_STEP_SUMMARY
-        
+        run: |
+        echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
+        echo "````" >> $GITHUB_STEP_SUMMARY
+        cat output.txt >> $GITHUB_STEP_SUMMARY
+        echo "````" >> $GITHUB_STEP_SUMMARY
