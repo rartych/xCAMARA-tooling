@@ -36,7 +36,7 @@ jobs:
       - name: Install Spectral functions
         run: npm install -g @stoplight/spectral-functions
       - name: Run Spectral linting
-        run: spectral lint code/API_definitions/*.yaml -f text -f stylish -o.text "<stdout>" -o.stylish output.md --verbose --ruleset ${{ github.workspace }}/.spectral.yaml  > output.txt
+        run: spectral lint code/API_definitions/*.yaml  -f html  -o.html output.md --verbose --ruleset ${{ github.workspace }}/.spectral.yaml  > output.txt
       - name: Display output
         run: cat output.md   
       - name: Log output  
