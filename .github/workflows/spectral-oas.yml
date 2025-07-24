@@ -40,9 +40,17 @@ jobs:
         run: spectral lint code/API_definitions/*.yaml  -f markdown -o.markdown output.md -f github-actions -o.github-actions output.gh --fail-severity=info --ruleset ${{ github.workspace }}/.spectral.yaml  > output.txt
       - name: Display output
         run: cat output.gh   
+      - name: Upload Spectral output as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: spectral-lint-output
+          path: output.md
+    retention-days: 30
       - name: Log output  
         run: |
           echo "### Spectral Output:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📁 [Download full output as artifact](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts)" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           #sed -e 's/Found [0-9]* rules ([0-9]* enabled)/\*\*&\*\*\n```/' \
           #    -e 's/✖ [0-9]* problems ([0-9]* errors, [0-9]* warnings, [0-9]* infos, [0-9]* hints)/```\n\*\*&\*\*/' \
