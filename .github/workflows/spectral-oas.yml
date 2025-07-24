@@ -43,7 +43,7 @@ jobs:
         run: |
           echo "### Spectral Output:" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          sed -e 's/Found [0-9]* rules ([0-9]* enabled)/\*\*&\*\*\n```/' \
-              -e 's/✖ [0-9]* problems ([0-9]* errors, [0-9]* warnings, [0-9]* infos, [0-9]* hints)/```\n\*\*&\*\*/' \
-              output.txt >> $GITHUB_STEP_SUMMARY
+          #sed -e 's/Found [0-9]* rules ([0-9]* enabled)/\*\*&\*\*\n```/' \
+          #    -e 's/✖ [0-9]* problems ([0-9]* errors, [0-9]* warnings, [0-9]* infos, [0-9]* hints)/```\n\*\*&\*\*/' \
+          #    output.txt >> $GITHUB_STEP_SUMMARY
           cat output.md >> $GITHUB_STEP_SUMMARY
