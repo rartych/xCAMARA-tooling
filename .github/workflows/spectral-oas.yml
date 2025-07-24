@@ -39,7 +39,7 @@ jobs:
         run: spectral lint code/API_definitions/*.yaml  -f markdown -o.markdown output.md -f github-actions -o.github-actions output.gh --fail-severity=info --ruleset ${{ github.workspace }}/.spectral.yaml  > output.txt
       - name: Display output
         run: |
-          cat output.gh
+          cat output.gh 
           # make Markdown easier to display
           sed -i 's/\./.\​/g' output.md
       - name: Upload Spectral output as artifact
