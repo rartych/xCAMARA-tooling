@@ -12,7 +12,7 @@ on:
         default: main
 jobs:
   execute:
-    name: Spectral
+    name: Spectral linting
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -36,18 +36,18 @@ jobs:
         run: npm install -g @stoplight/spectral-functions
       - name: Run Spectral linting
         continue-on-error: true
-        run: spectral lint code/API_definitions/*.yaml  -f markdown -o.markdown output.md -f github-actions -o.github-actions output.gh --fail-severity=info --ruleset ${{ github.workspace }}/.spectral.yaml  > output.txt
+        run: spectral lint code/API_definitions/*.yaml  -f markdown -o.markdown spectral_output.md -f github-actions -o.github-actions output.gh --fail-severity=info --ruleset ${{ github.workspace }}/.spectral.yaml  > output.txt
       - name: Display output
         run: |
           cat output.gh 
           # make Markdown easier to display
-          sed -i 's/\./.\​/g' output.md
+          sed -i 's/\./.\​/g' spectral_output.md
       - name: Upload Spectral output as artifact
         id: upload-artifact
         uses: actions/upload-artifact@v4
         with:
           name: spectral-lint-output
-          path: output.md
+          path: spectral_output.md
           retention-days: 30
       - name: Log output  
         run: |
@@ -55,9 +55,5 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "📁 [Download full output as artifact](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/${{ steps.upload-artifact.outputs.artifact-id }})" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          #sed -e 's/Found [0-9]* rules ([0-9]* enabled)/\*\*&\*\*\n```/' \
-          #    -e 's/✖ [0-9]* problems ([0-9]* errors, [0-9]* warnings, [0-9]* infos, [0-9]* hints)/```\n\*\*&\*\*/' \
-          #    output.txt >> $GITHUB_STEP_SUMMARY
-          # cat output.md >> $GITHUB_STEP_SUMMARY
-          sed -e 's/\./.\​/g' \
-              output.md >> $GITHUB_STEP_SUMMARY
+          cat spectral_output.md >> $GITHUB_STEP_SUMMARY
+
