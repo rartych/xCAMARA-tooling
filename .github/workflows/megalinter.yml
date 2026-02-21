@@ -38,7 +38,8 @@ jobs:
         # You can override MegaLinter flavor used to have faster performances
         # More info at https://megalinter.io/latest/flavors/
         # uses: oxsecurity/megalinter/flavors/c_cpp@v8
-        uses: rartych/megalinter-custom-flavor-openapi@main
+        uses: oxsecurity/megalinter/flavors/c_cpp@v9
+        # uses: rartych/megalinter-custom-flavor-openapi@main
         env:
           VALIDATE_ALL_CODEBASE: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
